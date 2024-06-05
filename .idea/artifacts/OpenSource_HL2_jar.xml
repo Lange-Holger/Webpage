@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="OpenSource HL2:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/OpenSource_HL2_jar</output-path>
+    <root id="archive" name="OpenSource HL2.jar">
+      <element id="module-output" name="OpenSource HL2" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../../../8.0/mysql-connector-j-8.0.33.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
