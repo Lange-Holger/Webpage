@@ -1,17 +1,27 @@
+import java.sql.*;
+import java.sql.ResultSet;
+
 import static javax.swing.JOptionPane.showInputDialog;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
 
-        User user1 = new User(showInputDialog("Bitte geben Sie Ihren Username ein: "),
-                showInputDialog("Bitte geben Sie Ihre Email ein: "),
-                showInputDialog("Bitte geben Sie Ihr Passwort ein: "));
 
-        System.out.println("Benutzername: " + user1.username
-                            + "\nE-Mail: " + user1.email + "\nPasswort: "
-                            + user1.password + "\nAlter: " +user1.alter);
+        Connection conn = DriverManager
+                .getConnection("jdbc:mysql://localhost:3306/userdb", "root", "rootpassword");
+        String sqlAbfrage = "SELECT * FROM nutzerdaten WHERE username = ? and passwort =?";
+        PreparedStatement statement = conn.prepareStatement(sqlAbfrage);
+        statement.setString(1, showInputDialog("Bitte Username eingeben"));
 
-       // User a = new User("a", "email", "b");
+        statement.setString(2, showInputDialog("Bitte Passwort eingeben"));
+        ResultSet resultSet = statement.executeQuery();
+        if (resultSet.next()) {
+            System.out.print("gefunden");
+        } else {
+            System.out.println("nicht gefunden");
+        }
+        conn.close();
+
 
 
     }
